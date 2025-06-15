@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – Weather App</title>
+  <link rel="stylesheet" href="contact.css" />
+</head>
+
+<style>
+    /* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f7f9fc;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+}
+.header h1 {
+  font-size: 2.75rem;
+  margin-bottom: 10px;
+}
+.header p {
+  font-size: 1.2rem;
+}
+
+/* Team Info */
+.team-info {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.team-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #0077c8;
+}
+.member {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.member h3 {
+  margin-bottom: 5px;
+  font-size: 1.4rem;
+}
+.member p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.member a {
+  color: #0077c8;
+  text-decoration: none;
+}
+.member a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.contact-form h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #0077c8;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccd0d5;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0077c8;
+  outline: none;
+}
+button {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #0077c8;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+button:hover {
+  background: #005fa3;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #e1eefb;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+</style>
+<body>
+  <header class="header">
+    <h1>Get in Touch</h1>
+    <p>We're here to help! Reach out to our team or leave us a message below.</p>
+  </header>
+
+  <section class="team-info">
+    <h2>Our Team</h2>
+    <div class="member">
+      <h3>Ansh Singh</h3>
+      <p>Company Founder & CEO</p>
+      <a href="ansh23004@gmail.com">ansh23004@gmail.com</a>
+    </div>
+    <div class="member">
+      <h3>Saurabh Kumar</h3>
+      <p>Lead Meteorologist</p>
+      <a href="saurabhcu006@gmailcom">saurabhcu006@gmailcom</a>
+    </div>
+    <div class="member">
+      <h3>Vikas Bajpai</h3>
+      <p>Head of Development</p>
+      <a href="vikasbajpai454@gmail.com">emily.johnson@example.com</a>
+    </div>
+  </section>
+
+  <section class="contact-form">
+    <h2>Send Us a Message</h2>
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Your Name *</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="company">Company Name</label>
+        <input type="text" id="company" name="company" />
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email *</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="message">How can we help you?</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Weather App. All rights reserved.</p>
+  </footer>
+</body>
+</html>

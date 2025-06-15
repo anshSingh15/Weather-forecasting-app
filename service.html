@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services – Weather App</title>
+  <link rel="stylesheet" href="services.css" />
+</head>
+<style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
+  background-color: #eef2f7;
+  line-height: 1.6;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  color: #0077c8;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #d1e3f8;
+  font-size: 0.9rem;
+}
+
+</style>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>What We Offer</h1>
+      <p>Accurate, real-time, and visually rich weather services at your fingertips.</p>
+    </div>
+  </header>
+
+  <section class="services">
+    <div class="service-card">
+      <h2>🌤️ Current Conditions</h2>
+      <p>Up‑to‑the‑minute data on temperature, humidity, wind speed, and precipitation.</p>
+    </div>
+    <div class="service-card">
+      <h2>Hourly & Daily Forecasts</h2>
+      <p>Detailed forecasts for the next few hours and days, with icons and intuitive layouts :contentReference[oaicite:1]{index=1}.</p>
+    </div>
+    <div class="service-card">
+      <h2>Severe Weather Alerts</h2>
+      <p>Real‑time alerts for storms, heavy rain, extreme temps, and more.</p>
+    </div>
+    <div class="service-card">
+      <h2>Radar & Weather Maps</h2>
+      <p>Interactive radar maps showing precipitation, wind patterns, and satellite imagery :contentReference[oaicite:2]{index=2}.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Your Weather App. All rights reserved.</p>
+  </footer>
+</body>
+</html>

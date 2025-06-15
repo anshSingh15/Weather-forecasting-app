@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<style>
+    /* Basic resets */
+body, h1, h2, h3, ul { margin:0; padding:0; }
+body { font-family: Arial, sans-serif; background: #eef2f3; color:#333; }
+
+/* Header */
+header {
+  background: #007BFF; color:#fff;
+  text-align:center; padding:1rem 0;
+}
+
+/* Main container using CSS Grid */
+.weather-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  padding:1rem;
+}
+
+/* Generic card style */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding:1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Current weather styling */
+.current-weather {
+  text-align:center;
+}
+.current-weather .temp {
+  font-size: 3rem;
+  font-weight:bold;
+}
+.current-weather #current-desc {
+  font-size:1.2rem;
+  margin-top:0.5rem;
+}
+
+/* Forecast area */
+.forecast .forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+.forecast-day {
+  text-align:center;
+  font-size:0.9rem;
+}
+
+/* Extra info list */
+.extra-info ul {
+  list-style:none;
+}
+.extra-info li {
+  margin:0.5rem 0;
+}
+
+/* Responsive tweaks */
+@media (max-width:600px) {
+  .forecast .forecast-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+  }
+}
+
+</style>
+<body>
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
+  <main class="weather-container">
+    <section class="card current-weather">
+      <h2 id="city-name">--</h2>
+      <div class="temp" id="current-temp">--°C</div>
+      <div id="current-desc">--</div>
+    </section>
+    <section class="card forecast">
+      <h3>5-day Forecast</h3>
+      <div class="forecast-grid" id="forecast-grid">
+        <!-- JavaScript fills small day blocks -->
+      </div>
+    </section>
+    <section class="card extra-info">
+      <h3>More Info</h3>
+      <ul>
+        <li>Humidity: <span id="humidity">--%</span></li>
+        <li>Wind: <span id="wind">-- km/h</span></li>
+        <li>Pressure: <span id="pressure">-- hPa</span></li>
+      </ul>
+    </section>
+  </main>
+</body>
+
+
+<script>
+    const API_KEY = "84a6e617c2f684a1cf3d865b14e9e9e8";
+const BASE_URL = "https://api.openweathermap.org/data/2.5/";
+
+async function getWeatherData(city = "DELHI") {
+  const endpoints = [
+    `${BASE_URL}weather?q=${city}&units=metric&appid=${API_KEY}`,
+    `${BASE_URL}forecast?q=${city}&units=metric&appid=${API_KEY}`,
+  ];
+
+  try {
+    const [curRes, foreRes] = await Promise.all(endpoints.map(url => fetch(url)));
+    if (!curRes.ok || !foreRes.ok) {
+      throw new Error(`Weather not found for "${city}"`);
+    }
+
+    const current = await curRes.json();
+    const forecast = await foreRes.json();
+    updateCurrent(current);
+    updateExtras(current);
+    updateForecast(forecast);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+}
+
+function updateCurrent(data) {
+  document.getElementById("city-name").textContent = `${data.name}, ${data.sys.country}`;
+  document.getElementById("current-temp").textContent = `${Math.round(data.main.temp)}°C`;
+  document.getElementById("current-desc").textContent = data.weather[0].description;
+}
+
+function updateExtras(data) {
+  document.getElementById("humidity").textContent = `${data.main.humidity}%`;
+  document.getElementById("wind").textContent = `${Math.round(data.wind.speed * 3.6)} km/h`;
+  document.getElementById("pressure").textContent = `${data.main.pressure} hPa`;
+}
+
+function updateForecast(data) {
+  const grid = document.getElementById("forecast-grid");
+  grid.innerHTML = "";
+
+  const daily = data.list
+    .filter(item => item.dt_txt.endsWith("12:00:00"))
+    .slice(0, 5);
+
+  daily.forEach(item => {
+    const d = new Date(item.dt * 1000);
+    const dateStr = d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric" });
+    const icon = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
+    const temp = Math.round(item.main.temp);
+    const desc = item.weather[0].description;
+
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "forecast-day";
+    dayDiv.innerHTML = `
+      <div>${dateStr}</div>
+      <img src="${icon}" alt="${desc}" />
+      <div>${temp}°C</div>`;
+    grid.appendChild(dayDiv);
+  });
+}
+
+// Optional: implement search by city
+document.addEventListener("DOMContentLoaded", () => getWeatherData());
+
+</script>
+</html>

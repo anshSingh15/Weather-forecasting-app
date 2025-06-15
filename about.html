@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body {
+    background-image: url('photo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+    /* About Section */
+.about-section {
+  padding: 4rem 1rem;
+  background-color: #f5f9fc;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1 1 300px;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.about-text p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.about-text .btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #007BFF;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 200ms;
+}
+.about-text .btn:hover {
+  background: #0056b3;
+}
+
+.about-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Mobile-first responsive tweaks */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-text .btn {
+    margin-top: 1rem;
+  }
+}
+
+</style>
+<body>
+    <section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>About This Weather App</h2>
+      <p>Our Weather Dashboard provides accurate, up-to-date meteorological data including current temperature, 5‑day forecast, humidity, wind speed, and atmospheric pressure. Built with simplicity and functionality in mind, it helps you plan your days with confidence.</p>
+      <p>Whether you're checking tomorrow’s outlook or curious about tonight's chill, our app delivers essential details with clean visuals and intuitive layout—designed for all devices.</p>
+      <a href="#features" class="btn">Explore Features</a>
+    </div>
+    <div class="about-image">
+      <img src="photo1.jpg" alt="Team working on weather data">
+    </div>
+  </div>
+</section>
+
+</body>
+<script>
+    // Smooth scroll behavior for anchor links
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const targetID = this.getAttribute("href");
+      const target = document.querySelector(targetID);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // Trigger fade-in animation for the About content when scrolled into view
+  const aboutSection = document.querySelector("#about .about-container");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+  observer.observe(aboutSection);
+});
+
+</script>
+</html>
